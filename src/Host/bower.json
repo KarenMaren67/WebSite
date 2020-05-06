@@ -1,0 +1,32 @@
+{
+  "name": "blue-leaf",
+  "description": "Physics-like animations for pretty particles",
+  "main": [
+    "js/motion.js",
+    "sass/motion.scss"
+  ],
+  "dependencies": {
+    "jquery.cookie": "jquery-cookie#v1.4.1"
+  },
+  "devDependencies": {},
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "motion",
+    "physics",
+    "particles"
+  ],
+  "authors": [
+    "Betty Beta <bbeta@example.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}

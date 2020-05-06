@@ -1,0 +1,16 @@
+﻿@model Application.Products.Dtos.ViewModels.GetFiltredViewModel
+
+<div class="list-group fixed-bar">
+	<h2>Каталог</h2>
+
+	<a asp-action="Index" class="list-group-item @(!Model.ReadProduct.CategoryId.HasValue ? "active" : "")">
+		Все товары
+	</a>
+
+	@foreach (var category in Model.MainCategories)
+	{
+		<a asp-route-CategoryId="@category.Id" class="list-group-item @(category.IsSelected? "active" : "")">
+			@category.Name
+		</a>
+	}
+</div>

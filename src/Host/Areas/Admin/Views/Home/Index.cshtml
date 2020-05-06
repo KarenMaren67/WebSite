@@ -1,0 +1,117 @@
+﻿@using Host.Extensions
+@model Application.Products.Dtos.ViewModels.ProductListForAdminViewModel
+
+@{
+	ViewData["Title"] = "View";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Админка</h2>
+
+<a class="btn btn-default" asp-area="Admin" asp-controller="Products" asp-action="Add">Добавить продукт</a>
+<a class="btn btn-default" asp-area="Admin" asp-controller="Categories" asp-action="Add">Добавить категорию</a>
+
+<h3>Категории</h3>
+<table class="table" style="margin-bottom: 50px">
+	<thead>
+		<tr>
+			<th>
+				Имя
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var category in Model.Categories)
+		{
+			<tr>
+				<td>
+					@category.Name
+				</td>
+				<td>
+					<a class="btn" asp-area="Admin" asp-controller="Categories" asp-action="Edit" asp-route-id="@category.Id">Изменить</a>
+					<a class="btn" asp-area="Admin" asp-controller="Categories" asp-action="Delete" asp-route-id="@category.Id">Удалить</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+<h3>Продукты</h3>
+<table class="table">
+	<thead>
+		<tr>
+			<th>Изображения</th>
+			<th>Артикул</th>
+			<th>Наименование</th>
+			<th>Размеры (ШГВ)</th>
+			<th>Цвет</th>
+			<th>Розн. цена</th>
+			<th>Опт. цена</th>
+			<th>Наличие</th>
+			<th>Количество</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var product in Model.Products)
+		{
+			var itemCountPerCarouselInner = 2;
+			var carouselGroupsCount = (int)Math.Ceiling(product.Images.Count / (double)itemCountPerCarouselInner);
+			<tr>
+				<td>
+					@*<div class="image-small">
+							@foreach (var image in product.Images)
+							{
+								<img class="img-thumbnail img-responsive" src="\@image.Path" />
+							}
+						</div>*@
+					<div id="product-thumbcarousel-@product.Id" class="carousel slide" data-interval="false">
+						<div class="carousel-inner">
+							@for (int i = 0; i < carouselGroupsCount; i++)
+							{<div class="row">
+									@for (int j = 0; j < itemCountPerCarouselInner; j++)
+									{
+										var imgNumber = j + itemCountPerCarouselInner * i;
+										if (imgNumber < product.Images.Count)
+										{
+											<div data-target="#product-carousel-@product.Id" data-slide-to="@imgNumber" class="image-small">
+												<img src="\@product.Images[imgNumber].Path" class="img-rounded img-responsive" />
+											</div>
+										}
+									}
+								</div>
+							}
+						</div>
+
+						@if (product.Images.Count > itemCountPerCarouselInner)
+						{
+							<a class="left carousel-control" href="#product-thumbcarousel-@product.Id" role="button" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="right carousel-control" href="#product-thumbcarousel-@product.Id" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
+						}
+
+					</div>
+				</td>
+				<td>@product.Articul</td>
+				<td>@product.Name</td>
+				<td>@product.GetProductDimensions()</td>
+				<td>@product.Color</td>
+				<td>@product.RetailPrice</td>
+				<td>@product.WholesalePrice</td>
+				<td>@product.Status</td>
+				<td>@product.Count</td>
+				<td>
+					<a class="btn" asp-area="" asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">Просмотр</a>
+					<a class="btn" asp-area="Admin" asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id">Изменить</a>
+					<a class="btn" asp-area="Admin" asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id">Удалить</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
+
+

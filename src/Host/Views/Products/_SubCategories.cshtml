@@ -1,0 +1,13 @@
+﻿@model IReadOnlyList<Application.Categories.Dtos.CategoryDto>
+
+<div class="btn-group fixed-bar">
+	@if (Model != null)
+	{
+		foreach (var subCategory in Model)
+		{
+			<a asp-route-CategoryId="@subCategory.Id" class="btn btn-default @(subCategory.IsSelected ? "active" : "")" >
+				@subCategory.Name
+			</a>
+		}
+	}
+</div>

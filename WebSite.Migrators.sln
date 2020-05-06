@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2050
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Postgre.Migrator", "migrators\Postgre.Migrator\Postgre.Migrator.csproj", "{9EE0DF40-3E6D-41B8-92D2-A786D7F7FF26}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.EntityFramework", "src\Infrastructure.EntityFramework\Infrastructure.EntityFramework.csproj", "{A8D91B32-4DCD-4774-87CF-FA36DAC347D0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "src\Core\Core.csproj", "{C2443788-E0FE-4745-9A8C-23444901B7E2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{E930ACF9-A62D-43EB-9E48-56AC4B8601A4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{6DA9869E-E2EE-4413-B96A-A0D54A76EE4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mysql.Migrator", "migrators\Mysql.Migrator\Mysql.Migrator.csproj", "{3E71A7C5-04E9-4ADE-B6ED-47A95CD464B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Migrator", "migrators\Migrator\Migrator.csproj", "{6D551B4D-5B6A-4660-9CD7-12923FB8C68A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9EE0DF40-3E6D-41B8-92D2-A786D7F7FF26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE0DF40-3E6D-41B8-92D2-A786D7F7FF26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE0DF40-3E6D-41B8-92D2-A786D7F7FF26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE0DF40-3E6D-41B8-92D2-A786D7F7FF26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8D91B32-4DCD-4774-87CF-FA36DAC347D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D91B32-4DCD-4774-87CF-FA36DAC347D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D91B32-4DCD-4774-87CF-FA36DAC347D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D91B32-4DCD-4774-87CF-FA36DAC347D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2443788-E0FE-4745-9A8C-23444901B7E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2443788-E0FE-4745-9A8C-23444901B7E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2443788-E0FE-4745-9A8C-23444901B7E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2443788-E0FE-4745-9A8C-23444901B7E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E930ACF9-A62D-43EB-9E48-56AC4B8601A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E930ACF9-A62D-43EB-9E48-56AC4B8601A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E930ACF9-A62D-43EB-9E48-56AC4B8601A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E930ACF9-A62D-43EB-9E48-56AC4B8601A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E71A7C5-04E9-4ADE-B6ED-47A95CD464B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E71A7C5-04E9-4ADE-B6ED-47A95CD464B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E71A7C5-04E9-4ADE-B6ED-47A95CD464B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E71A7C5-04E9-4ADE-B6ED-47A95CD464B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D551B4D-5B6A-4660-9CD7-12923FB8C68A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D551B4D-5B6A-4660-9CD7-12923FB8C68A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D551B4D-5B6A-4660-9CD7-12923FB8C68A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D551B4D-5B6A-4660-9CD7-12923FB8C68A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A8D91B32-4DCD-4774-87CF-FA36DAC347D0} = {6DA9869E-E2EE-4413-B96A-A0D54A76EE4F}
+		{C2443788-E0FE-4745-9A8C-23444901B7E2} = {6DA9869E-E2EE-4413-B96A-A0D54A76EE4F}
+		{E930ACF9-A62D-43EB-9E48-56AC4B8601A4} = {6DA9869E-E2EE-4413-B96A-A0D54A76EE4F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E4B47132-EBA9-404E-9E0B-0E8B04EDA40C}
+	EndGlobalSection
+EndGlobal

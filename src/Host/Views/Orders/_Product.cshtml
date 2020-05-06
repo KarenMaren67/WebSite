@@ -1,0 +1,19 @@
+﻿@using Host.Extensions
+@model Application.Products.Dtos.Cart.CartProductViewModel
+
+<div class="row">
+	<div class="col-md-4">
+		<partial name="/Views/Products/_Carousel.cshtml" model="@Model.Product" />
+	</div>
+
+	<div class="col-md-6">
+		<p>@Model.Product.GetProductDimensions()</p>
+
+		<h4>@Model.Product.RetailPriceInRubles&#8381;</h4>
+
+		<p>Количество: @Model.Count</p>
+	</div>
+	<div class="col-md-2">
+		@Model.Price&#8381;
+	</div>
+</div>

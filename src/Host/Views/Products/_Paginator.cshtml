@@ -1,0 +1,68 @@
+﻿@model Application.Products.Dtos.ViewModels.GetFiltredViewModel
+@{
+	var currentPage = Model.PagerOutModel.CurrentPage;
+	var PageCount = Model.PagerOutModel.PageCount;
+
+	var startPage = (currentPage <= 2) || (PageCount <= 5) ? 1 : currentPage - 2;
+	startPage = ((currentPage + 2) <= PageCount)||(PageCount <= 5) ? startPage : PageCount-4;
+	var endPage = currentPage <= 2 ? 5 : currentPage + 2;
+	endPage =  endPage <= PageCount ? endPage : PageCount;
+
+
+}
+
+@if (Model.PagerOutModel.PageCount > 1)
+{
+	<nav aria-label="...">
+		<ul class="pagination">
+
+			@if (currentPage == 1)
+			{
+				<li class="disabled">
+					<span aria-hidden="true">&laquo; назад</span>
+				</li>
+			}
+			else
+			{
+				<li>
+					<a asp-route-CurrentPage="@(currentPage - 1)" asp-route-CategoryId="@Model.ReadProduct.CategoryId" aria-label="Previous">
+						<span aria-hidden="true">&laquo; назад</span>
+					</a>
+				</li>
+			}
+
+			@for (int i = startPage; i <= endPage; i++)
+			{
+				if (currentPage == i)
+				{
+					<li class="active">
+						<span>@i <span class="sr-only">(current)</span></span>
+					</li>
+				}
+				else
+				{
+					<li>
+						<a asp-route-CurrentPage="@i" asp-route-CategoryId="@Model.ReadProduct.CategoryId">@i <span class="sr-only">(current)</span></a>
+					</li>
+				}
+
+			}
+
+			@if (currentPage == Model.PagerOutModel.PageCount)
+			{
+				<li class="disabled">
+					<span aria-hidden="true">вперед &raquo;</span>
+				</li>
+			}
+			else
+			{
+				<li>
+					<a asp-route-CurrentPage="@(currentPage + 1)" asp-route-CategoryId="@Model.ReadProduct.CategoryId" aria-label="Next">
+						<span aria-hidden="true">вперед &raquo;</span>
+					</a>
+				</li>
+			}
+
+		</ul>
+	</nav>
+}

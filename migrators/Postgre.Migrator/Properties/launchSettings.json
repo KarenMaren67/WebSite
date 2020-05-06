@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Postgre.Migrator": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

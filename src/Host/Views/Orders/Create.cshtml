@@ -1,0 +1,67 @@
+﻿@using Application.Products
+@using Application.Products.Dtos.Cart
+@using Host.Constants
+@using Newtonsoft.Json
+@model Application.Orders.Dtos.CreateOrder
+
+@inject IProductService ProductService
+@functions {
+public IReadOnlyList<CartProductViewModel> Products { get; set; } = new List<CartProductViewModel>();
+public decimal Price => Products.Sum(x => x.Price);
+}
+@{
+	ViewBag.Title = "Корзина";
+	Layout = "_Layout";
+
+	if (Context.Request.Cookies.TryGetValue(Cookie.CartCookieName, out string value))
+	{
+		var cartProducts = JsonConvert.DeserializeObject<CartProduct[]>(value);
+		var cartviewModel = await ProductService.GetCartViewModelAsync(cartProducts);
+		Products = cartviewModel.Products;
+	}
+}
+
+<h2>Корзина</h2>
+
+
+@if (Products.Any())
+{
+	<form class="cart" asp-controller="Orders" asp-action="Create" method="post">
+		<div>
+			<div class="form-group col-md-5">
+				<label asp-for="@Model.Name"></label>
+				<input asp-for="@Model.Name" class="form-control" />
+				<span asp-validation-for="@Model.Name" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div>
+			<div class="form-group col-md-5">
+				<label asp-for="@Model.Phone"></label>
+				<input asp-for="@Model.Phone" class="form-control" />
+				<span asp-validation-for="@Model.Phone" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="form-group col-md-5">
+				<button type="submit" class="btn btn-default">Заказать</button>
+			</div>
+		</div>
+
+		@foreach (var product in Products)
+		{
+			<br />
+			<partial name="_Product" model="@product" />
+		}
+
+		<input asp-for="@Model.Price" class="form-control" value="@Price" type="hidden" />
+		<p class="text-center">Всего @Price</p>
+	</form>
+}
+else
+{
+	<p>Корзина пуста! Выберите понравившийся товар и добавьте его в карзину</p>
+	<a asp-action="Index" asp-controller="Products" class="btn btn-primary">Перейти к каталогу</a>
+
+}

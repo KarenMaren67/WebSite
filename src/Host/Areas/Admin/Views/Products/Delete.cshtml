@@ -1,0 +1,17 @@
+﻿@model Application.Products.Dtos.ProductDto
+
+@{
+	ViewData["Title"] = "Delete";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Вы действительно хотите удалить продукт</h2>
+<h2>@Model.Articul</h2>
+<h2>@Model.Name</h2>
+
+<form asp-controller="Products" asp-action="Delete" asp-area="Admin" method="post">
+	<input asp-for="Id" hidden />
+	<button class="btn btn-danger" type="submit">Удалить</button>
+	<a class="btn btn-default" asp-area="Admin" asp-controller="Home" asp-action="Index">Вернуться назад</a>
+</form>
+

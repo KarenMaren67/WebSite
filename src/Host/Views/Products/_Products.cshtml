@@ -1,0 +1,56 @@
+﻿@using Host.Extensions
+@model Application.Products.Dtos.ViewModels.GetFiltredViewModel
+
+@if (Model.PagerOutModel.Items.Any())
+{
+	<div style="overflow:auto">
+		@foreach (var product in Model.PagerOutModel.Items)
+		{
+			<div class="row">
+				<div class="col-md-5">
+					<partial name="_Carousel" model="@product" />
+				</div>
+
+				<div class="col-md-7">
+
+					<h3>@product.Name</h3>
+
+					<div class="row">
+						<div class="col-md-6">
+							<h3>
+								<a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">
+									<img src="~/loupe.svg" style="height:20px;">
+								</a>
+								<a asp-controller="Products" asp-action="Details" asp-route-id="@product.Id">@product.Articul</a>
+							</h3>
+						</div>
+					</div>
+
+					<p>@product.GetProductDimensions()</p>
+
+					<h4>@product.RetailPriceInRubles&#8381;</h4>
+					<p>@product.Status</p>
+					@*<p>На складе: @product.Count</p>*@
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="input-group">
+								<input class="form-control" type="number" value="1" />
+								<span class="input-group-btn">
+									<button class="btn btn-primary to-cart" data-product-id="@product.Id">В корзину</button>
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<hr />
+		}
+	</div>
+	<partial name="_Paginator" model="@Model" />
+}
+else
+{
+	<span class="label label-info">Не найдено элементов</span>
+}

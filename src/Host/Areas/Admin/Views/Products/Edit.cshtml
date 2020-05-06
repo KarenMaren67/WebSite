@@ -1,0 +1,113 @@
+﻿@model Application.Products.Dtos.UpdateProductViewModel
+
+@{
+	ViewData["Title"] = "Edit";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Product.Name</h2>
+<h3>@Model.Product.Articul</h3>
+
+<form asp-area="Admin" asp-controller="Products" asp-action="Edit" method="post" enctype="multipart/form-data">
+	
+	<input asp-for="Product.Id" hidden />
+
+	<div class="col-md-6">
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.Articul"></label>
+				<input asp-for="Product.Articul" class="form-control" />
+				<span asp-validation-for="Product.Articul" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.Name"></label>
+				<input asp-for="Product.Name" class="form-control" />
+				<span asp-validation-for="Product.Name" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.WholesalePrice"></label>
+				<input asp-for="Product.WholesalePrice" class="form-control" />
+				<span asp-validation-for="Product.WholesalePrice" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.RetailPrice"></label>
+				<input asp-for="Product.RetailPrice" class="form-control" />
+				<span asp-validation-for="Product.RetailPrice" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.Width"></label>
+				<input asp-for="Product.Width" class="form-control" />
+				<span asp-validation-for="Product.Width" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.Height"></label>
+				<input asp-for="Product.Height" class="form-control" />
+				<span asp-validation-for="Product.Height" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.Depth"></label>
+				<input asp-for="Product.Depth" class="form-control" />
+				<span asp-validation-for="Product.Depth" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.Color"></label>
+				<input asp-for="Product.Color" class="form-control" />
+				<span asp-validation-for="Product.Color" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.Status"></label>
+				<input asp-for="Product.Status" class="form-control" />
+				<span asp-validation-for="Product.Status" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.Count"></label>
+				<input asp-for="Product.Count" class="form-control" />
+				<span asp-validation-for="Product.Count" class="text-danger"></span>
+			</div>
+		</div>
+
+		<div class="row ">
+			<div class="form-group col-md-5">
+				<label asp-for="Product.Category"></label>
+				<select asp-for="Product.Category.Id" class="form-control">
+					@foreach (var category in Model.Categories)
+					{
+						<option value="@category.Id">@category.Name</option>
+					}
+				</select>
+				<span asp-validation-for="Product.Category" class="text-danger"></span>
+			</div>
+		</div>
+	</div>
+	<button type="submit">Редактировать</button>
+</form>
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}

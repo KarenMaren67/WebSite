@@ -1,0 +1,64 @@
+﻿@model Application.Products.Dtos.ProductDto
+@{
+
+	var itemCountPerCarouselInner = 4;
+
+	var carouselGroupsCount = (int)Math.Ceiling(Model.Images.Count / (double)itemCountPerCarouselInner);
+}
+
+<div id="product-carousel-@Model.Id" class="carousel slide" data-ride="carousel" data-interval="false">
+	<div class="carousel-inner">
+
+		@foreach (var image in Model.Images)
+		{
+			<div class="item image-large @(Model.Images[0] == image ? "active" : "")">
+				<a asp-controller="Products" asp-action="Details" asp-route-id="@Model.Id">
+					<img src="\@image.Path" class="img-rounded img-responsive"/>
+				</a>
+			</div>
+		}
+
+	</div>
+</div>
+
+<hr />
+
+@if (Model.Images.Count > 1 )
+{
+	<div id="product-thumbcarousel-@Model.Id" class="carousel slide" data-interval="false">
+		<div class="carousel-inner">
+
+			@for (int i = 0; i < carouselGroupsCount; i++)
+			{
+				<div class="item @(i==0?"active":"")">
+					<div class="row">
+						@for (int j = 0; j < itemCountPerCarouselInner; j++)
+						{
+							var imgNumber = j + itemCountPerCarouselInner * i;
+							if (imgNumber < Model.Images.Count)
+							{
+								<div data-target="#product-carousel-@Model.Id" data-slide-to="@imgNumber" class="thumb col-md-3 col-sm-3">
+									<img src="\@Model.Images[imgNumber].Path" class="img-rounded img-responsive" />
+								</div>
+							}
+						}
+					</div>
+				</div>
+			}
+
+		</div>
+
+		@if (Model.Images.Count > itemCountPerCarouselInner)
+		{
+			<a class="left carousel-control" href="#product-thumbcarousel-@Model.Id" role="button" data-slide="prev">
+				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="right carousel-control" href="#product-thumbcarousel-@Model.Id" role="button" data-slide="next">
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+		}
+
+	</div>	
+}
